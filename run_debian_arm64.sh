@@ -43,8 +43,8 @@ make_kernel_menuconfig(){
 }
 
 make_kernel_image(){
-		echo "start build kernel image..."
-		make virt_defconfig
+		echo "start build kernel image $JOBCOUNT ..."
+		#make virt_defconfig
 		make -j $JOBCOUNT
 }
 
