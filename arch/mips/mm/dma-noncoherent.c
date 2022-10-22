@@ -51,7 +51,12 @@ void arch_dma_prep_coherent(struct page *page, size_t size)
 
 void *arch_dma_set_uncached(void *addr, size_t size)
 {
-	return (void *)(__pa(addr) + UNCAC_BASE);
+void *arch_dma_set_uncached(void *ptr, size_t size)
+{
+        unsigned long addr = (unsigned long)ptr;
+        return (void *)ptr;
+}
+
 }
 
 static inline void dma_sync_virt_for_device(void *addr, size_t size,

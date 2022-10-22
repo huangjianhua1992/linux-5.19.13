@@ -27,6 +27,17 @@
 #include <linux/sched/task.h>
 #include <linux/delayacct.h>
 #include "swap.h"
+#ifndef CONFIG_FRONTSWAP
+void __frontswap_invalidate_page(unsigned type, pgoff_t offset)
+{}
+
+void __frontswap_invalidate_area(unsigned type) {}
+
+int __frontswap_store(struct page *page) {return 0;}
+
+int __frontswap_load(struct page *page) {return 0;}
+
+#endif
 
 void end_swap_bio_write(struct bio *bio)
 {

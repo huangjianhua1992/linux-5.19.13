@@ -1945,7 +1945,27 @@ out:
 	 */
 	mmu_notifier_invalidate_range_only_end(&range);
 }
-#endif /* CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD */
+#else/* CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD */
+void __split_huge_pud(struct vm_area_struct *vma, pud_t *pud,
+		unsigned long address)
+{}
+int zap_huge_pud(struct mmu_gather *tlb, struct vm_area_struct *vma,
+		 pud_t *pud, unsigned long addr)
+{
+	return 0;
+}
+int copy_huge_pud(struct mm_struct *dst_mm, struct mm_struct *src_mm,
+		  pud_t *dst_pud, pud_t *src_pud, unsigned long addr,
+		  struct vm_area_struct *vma)
+{
+	return 0;
+}
+struct page *follow_devmap_pud(struct vm_area_struct *vma, unsigned long addr,
+		pud_t *pud, int flags, struct dev_pagemap **pgmap)
+{
+	return NULL;
+}
+#endif
 
 static void __split_huge_zero_page_pmd(struct vm_area_struct *vma,
 		unsigned long haddr, pmd_t *pmd)

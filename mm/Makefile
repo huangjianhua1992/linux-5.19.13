@@ -2,6 +2,9 @@
 #
 # Makefile for the linux memory manager.
 #
+CFLAGS_interval_tree.o = -O2
+
+CFLAGS_huge_memory.o = -O
 
 KASAN_SANITIZE_slab_common.o := n
 KASAN_SANITIZE_slab.o := n
